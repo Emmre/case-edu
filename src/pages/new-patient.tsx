@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { addPatient } from "../store/patientSlice";
 import { useRouter } from "next/router";
 import { PRESCRIPTIONS } from "@/constant";
-import withAuth from "@/hoc/withAuth";
 
 const NewPatientPage = () => {
   const router = useRouter();
@@ -87,4 +86,4 @@ const NewPatientPage = () => {
   );
 };
 
-export default withAuth(NewPatientPage);
+export default NewPatientPage;

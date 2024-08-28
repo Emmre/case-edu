@@ -12,7 +12,6 @@ import {
   TitleStyled,
   HeaderStyled,
 } from "@/styles/global";
-import withAuth from "@/hoc/withAuth";
 import { useDispatch } from "react-redux";
 import EditModal from "@/components/Modal/EditModal";
 
@@ -104,4 +103,4 @@ const PatientsPage = () => {
   );
 };
 
-export default withAuth(PatientsPage);
+export default PatientsPage;

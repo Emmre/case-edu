@@ -1,9 +1,9 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
-import {
-  loadAuthStateFromLocalStorage,
-  saveAuthStateToLocalStorage,
-} from "../utils/localStorage";
 import { IAuthState, AuthContextType } from "../types/auth";
+import {
+  loadAuthStateFromCookies,
+  saveAuthStateToCookies,
+} from "@/utils/localStorage";
 
 const defaultAuthState: IAuthState = {
   isAuthenticated: false,
@@ -18,15 +18,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [authState, setAuthState] = useState<IAuthState>(
-    loadAuthStateFromLocalStorage()
+    loadAuthStateFromCookies()
   );
 
   useEffect(() => {
-    setAuthState(loadAuthStateFromLocalStorage());
+    setAuthState(loadAuthStateFromCookies());
   }, []);
 
   useEffect(() => {
-    saveAuthStateToLocalStorage(authState);
+    saveAuthStateToCookies(authState);
   }, [authState]);
 
   const setUserCredentials = (userCredentials?: IAuthState | null) => {
@@ -36,6 +36,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setAuthState(userCredentials);
     }
   };
+
   return (
     <AuthContext.Provider
       value={{
